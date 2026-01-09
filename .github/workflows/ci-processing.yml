@@ -6,6 +6,8 @@ on:
     paths:
       - 'processing_service/**'
       - '.github/workflows/ci-processing.yml'
+    tags:
+      - 'v*'
   pull_request:
     branches: [ "main" ]
     paths:

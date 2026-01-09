@@ -6,6 +6,8 @@ on:
     paths:
       - 'ingestion_service/**'
       - '.github/workflows/ci-ingestion.yml'
+    tags:
+      - 'v*'
   pull_request:
     branches: [ "main" ]
     paths:

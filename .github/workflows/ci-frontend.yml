@@ -6,6 +6,8 @@ on:
     paths:
       - 'frontend_service/**'
       - '.github/workflows/ci-frontend.yml'
+    tags:
+      - 'v*'
   pull_request:
     branches: [ "main" ]
     paths:
