@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app # Hot reload
+    networks:
+      - arxiv-shared
+    environment:
+      # Sobrescreve endpoint para comunicação interna do Docker
+      - S3_ENDPOINT=http://arxiv-minio:9000
+
+networks:
+  arxiv-shared:
+    external: true

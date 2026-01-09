@@ -1,0 +1,39 @@
+name: CI - Frontend Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'frontend_service/**'
+      - '.github/workflows/ci-frontend.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'frontend_service/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend_service
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Install Dependencies
+      run: make install
+
+    - name: Run Tests
+      # Integration/Unit tests
+      run: make test
