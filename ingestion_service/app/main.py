@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
         print("🚀 RUN_ON_STARTUP=True. Iniciando Job de Ingestão...")
         service = IngestionService(repository=S3Repository(), scraper=ArxivScraper())
         # Roda em background para não bloquear o startup do Uvicorn (opcional, mas bom pra healthcheck)
-        asyncio.create_task(service.run(query="Isotretinoina", max_results=50))
+        asyncio.create_task(service.run(query=settings.SEARCH_QUERY, max_results=50))
     
     yield
     # Shutdown

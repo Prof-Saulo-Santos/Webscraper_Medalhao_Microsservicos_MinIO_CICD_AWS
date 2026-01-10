@@ -11,5 +11,6 @@ class Settings(BaseSettings):
     
     # Feature Flag para rodar como Job (Batch) ao iniciar
     RUN_ON_STARTUP: bool = False
+    SEARCH_QUERY: str = "Machine Learning"
 
 settings = Settings()
