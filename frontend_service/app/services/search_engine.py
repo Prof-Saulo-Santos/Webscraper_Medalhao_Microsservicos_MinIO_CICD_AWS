@@ -51,6 +51,14 @@ class SearchEngine:
 
         return pd.DataFrame(data)
 
+    def get_silver_count(self) -> int:
+        """Retorna a contagem de objetos na camada Silver (sem baixar conteúdo)."""
+        try:
+            response = self.s3.list_objects_v2(Bucket=settings.S3_BUCKET_SILVER)
+            return response.get("KeyCount", 0)
+        except Exception:
+            return 0
+
     def search(self, query: str, top_k: int = 5):
         # Inicializa resources se necessário
         if self.model is None:
