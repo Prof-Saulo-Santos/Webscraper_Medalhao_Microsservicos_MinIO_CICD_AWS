@@ -84,6 +84,7 @@ resource "aws_ecs_task_definition" "frontend" {
         }
       ]
       environment = [
+        { name = "S3_BUCKET_BRONZE", value = aws_s3_bucket.bronze.bucket },
         { name = "S3_BUCKET_SILVER", value = aws_s3_bucket.silver.bucket }
       ]
       logConfiguration = {

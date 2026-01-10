@@ -42,7 +42,9 @@ resource "aws_iam_policy" "ingestion_s3_policy" {
         Action   = ["s3:PutObject", "s3:GetObject", "s3:ListBucket"]
         Resource = [
             aws_s3_bucket.bronze.arn,
-            "${aws_s3_bucket.bronze.arn}/*"
+            "${aws_s3_bucket.bronze.arn}/*",
+            aws_s3_bucket.silver.arn,
+            "${aws_s3_bucket.silver.arn}/*"
         ]
       }
     ]

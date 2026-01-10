@@ -51,6 +51,14 @@ class SearchEngine:
 
         return pd.DataFrame(data)
 
+    def get_bronze_count(self) -> int:
+        """Retorna a contagem de objetos na camada Bronze (sem baixar conteúdo)."""
+        try:
+            response = self.s3.list_objects_v2(Bucket=settings.S3_BUCKET_BRONZE)
+            return response.get("KeyCount", 0)
+        except Exception:
+            return 0
+
     def get_silver_count(self) -> int:
         """Retorna a contagem de objetos na camada Silver (sem baixar conteúdo)."""
         try:

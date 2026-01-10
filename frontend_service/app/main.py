@@ -17,8 +17,11 @@ def main():
             st.success("Cache limpo! Recarregue a busca.")
 
     engine = SearchEngine()
-    count = engine.get_silver_count()
-    st.markdown(f":blue[Existem {count} registros na camada Silver]")
+    
+    bronze_count = engine.get_bronze_count()
+    silver_count = engine.get_silver_count()
+    
+    st.markdown(f":orange[Bronze: {bronze_count}] | :blue[Silver: {silver_count}]")
 
     # Input
     query = st.text_input(
