@@ -8,5 +8,8 @@ class Settings(BaseSettings):
     AWS_ACCESS_KEY_ID: Optional[str] = None
     AWS_SECRET_ACCESS_KEY: Optional[str] = None
     AWS_REGION: str = "us-east-1"
+    
+    # Feature Flag para rodar como Job (Batch) ao iniciar
+    RUN_ON_STARTUP: bool = False
 
 settings = Settings()
